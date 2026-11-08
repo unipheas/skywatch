@@ -1,0 +1,31 @@
+name: Release
+on:
+  push:
+    tags: ['v[0-9]*.[0-9]*.[0-9]*']
+permissions:
+  contents: read
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - name: Check release version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync("src/appmeta/manifest.json")); if(process.env.RELEASE_TAG!=="v"+m.version) process.exit(1);'
+      - run: npm audit --audit-level=high
+      - run: npm run check
+      - name: Checksum
+        run: cd dist && sha256sum app.unipheas.skywatch.tgz > SHA256SUMS
+      - name: Publish installable app
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: gh release create "$RELEASE_TAG" dist/app.unipheas.skywatch.tgz dist/SHA256SUMS --verify-tag --title "Skywatch $RELEASE_TAG" --notes-file RELEASE.md

@@ -1,0 +1,12 @@
+{
+  "format_version": 1, "version": 1,
+  "fields": {
+    "location": { "type": "geolocation", "label": "Your location", "description": "Auto estimates your city from your public IP. For accurate overhead detection, choose a fixed location in the web interface. Restart after changes.", "default": { "mode": "auto", "name": "Automatic (approximate)" } },
+    "radius_nm": { "type": "integer", "label": "Nearby radius (NM)", "description": "1 NM = 1.85 km. Crowded searches may shrink to protect device memory.", "default": 5, "min": 1, "max": 10 },
+    "overhead_nm": { "type": "integer", "label": "Overhead radius (NM)", "description": "Horizontal distance, not height. Auto location is approximate. Capped at the nearby radius.", "default": 1, "min": 1, "max": 3 },
+    "refresh_seconds": { "type": "integer", "label": "Refresh (seconds)", "default": 15, "min": 15, "max": 60, "step": 5 },
+    "units": { "type": "enum", "label": "Display units", "default": "aviation", "options": [ { "value": "aviation", "label": "NM / feet / knots" }, { "value": "imperial", "label": "Miles / feet / mph" }, { "value": "metric", "label": "km / metres / kmh" } ] },
+    "alerts": { "type": "boolean", "label": "Overhead LED alert", "description": "Amber LED pulse when new traffic enters the overhead radius. No sound. Suppressed in demo mode.", "default": true },
+    "demo": { "type": "boolean", "label": "Demo mode", "description": "Fictional traffic labeled D. No internet requests or alerts.", "default": false }
+  }
+}
