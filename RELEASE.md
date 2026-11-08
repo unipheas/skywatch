@@ -9,6 +9,6 @@ Skywatch turns BUSY Bar into a standalone nearby-aircraft display.
 
 IP location is approximate, not GPS. For planes directly over your house, set a fixed location. Aircraft data is provided by [adsb.fi](https://adsb.fi) for personal, non-commercial use.
 
-**Validation:** type checking, 19 automated core/packaged-runtime tests, a clean dependency audit, and live API checks passed. Physical installation, display rendering, TLS compatibility, and peak memory have not been verified because the development device was unreachable. This is the initial 0.1.0 release.
+**Validation:** type checking, 21 automated core/packaged-runtime tests, a clean dependency audit, and live API checks passed. Physical installation, display rendering, TLS compatibility, and peak memory have not been verified because the development device was unreachable. This is the initial 0.1.0 release.
 
 See the repository README for controls, privacy, limitations, and setup. `SHA256SUMS` verifies the installable archive. GitHub's source-code archives are not BUSY Bar app packages.
